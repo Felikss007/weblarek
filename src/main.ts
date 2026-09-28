@@ -44,15 +44,15 @@ const basket = new Basket
 const itemsAddInBasket = apiProducts.items.slice(0, 2)
 if (itemsAddInBasket.length !== 0) {
     itemsAddInBasket.forEach((item) => {
-        basket.setItems(item)
+        basket.addItem(item)
         console.log('Товар с названием: "' + item.title + '" добавлен в корзину')
     })
 
     console.log('Количество товаров в корзине:', basket.getCount())
 
 
-    const ItemsInBasket = basket.getItems()
-    console.log('Товары в корзине:', ItemsInBasket.map((t) => t.title).join(', '))
+    const itemsInBasket = basket.getItems()
+    console.log('Товары в корзине:', itemsInBasket.map((t) => t.title).join(', '))
 
     console.log('Общая стоимость корзины:', basket.getTotalPrice())
 
@@ -69,7 +69,7 @@ if (itemsAddInBasket.length !== 0) {
 
   const productRemove = itemsAddInBasket[1]
   if (productRemove) {
-    basket.delItems(productRemove.id)
+    basket.delItem(productRemove.id)
     console.log('Удален товар:', productRemove.title)
     console.log('Количество товаров после удаления:', basket.getCount())
   }

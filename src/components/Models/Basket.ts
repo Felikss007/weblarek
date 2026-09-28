@@ -12,11 +12,11 @@ export class Basket {
         return this.items
     }
 
-    public setItems(product: IProduct): void {
+    public addItem(product: IProduct): void {
         this.items.push(product)
     }
 
-    public delItems(id: string): void {
+    public delItem(id: string): void {
         this.items = this.items.filter(item => item.id !== id)
     }
 
