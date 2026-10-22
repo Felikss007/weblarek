@@ -1,4 +1,5 @@
 import { IBuyer, TPayment } from "../../types";
+import { IEvents } from "../base/Events";
 
 
 //Тип для ошибок покупателя. 
@@ -13,7 +14,7 @@ export class Buyer {
     private email: string;
 
 
-    constructor() {
+    constructor(protected events: IEvents) {
         this.payment = null
         this.address = ''
         this.phone = ''
@@ -25,19 +26,26 @@ export class Buyer {
     public updateData(data: Partial<IBuyer>): void {
         if(data.payment !== undefined) {
             this.payment = data.payment
+            
         }
 
         if(data.address !== undefined) {
             this.address = data.address
+            
         }
 
         if (data.phone !== undefined) {
             this.phone = data.phone
+            
         }
 
         if (data.email !== undefined) {
             this.email = data.email
+            
         }
+
+        this.events.emit('buyer:changed')
+        
     }
 
 
@@ -55,6 +63,7 @@ export class Buyer {
         this.address = ''
         this.phone = ''
         this.email = ''
+        this.events.emit('buyer:changed')
 
     }
 
