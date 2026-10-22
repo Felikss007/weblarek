@@ -110,7 +110,9 @@ events.on('basket:changed', () => {
 })
 
 events.on('basket:opened', () => {
-    modal.content = basketView.render()
+    modal.content = basketView.render({
+        valid: basketModel.getCount() > 0
+    })
     modal.open()
 })
 
